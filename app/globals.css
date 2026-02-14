@@ -1,0 +1,249 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Patrick+Hand&display=swap');
+
+:root {
+  --bg-warm: #fff4db;
+  --bg-peach: #ffd2b7;
+  --card: #fffdf5;
+  --text: #3d1c16;
+  --yes: #f45b69;
+  --yes-hover: #df4453;
+  --no: #2e6f95;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: 'Baloo 2', cursive;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.55), transparent 30%),
+    radial-gradient(circle at 78% 12%, rgba(255, 210, 183, 0.7), transparent 35%),
+    linear-gradient(135deg, var(--bg-warm), var(--bg-peach));
+}
+
+.page {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+}
+
+.card {
+  width: min(680px, 100%);
+  min-height: min(76dvh, 680px);
+  background: var(--card);
+  border-radius: 28px;
+  padding: 1.2rem 1.2rem 1.4rem;
+  box-shadow:
+    0 16px 40px rgba(61, 28, 22, 0.15),
+    inset 0 0 0 2px rgba(255, 210, 183, 0.7);
+  position: relative;
+  overflow: hidden;
+  animation: floatIn 600ms ease;
+}
+
+.top-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.tag {
+  margin: 0;
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1.1rem;
+  color: #9e3a31;
+}
+
+h1 {
+  margin: 0.25rem 0 0;
+  font-size: clamp(1.6rem, 5vw, 2.6rem);
+  line-height: 1.1;
+}
+
+.subtitle {
+  margin: 0.55rem 0 0;
+  font-size: clamp(1rem, 3vw, 1.25rem);
+}
+
+.button-stage {
+  margin-top: 1.2rem;
+  position: relative;
+  height: clamp(320px, 50dvh, 410px);
+  border-radius: 20px;
+  background:
+    linear-gradient(180deg, rgba(255, 210, 183, 0.25), rgba(255, 255, 255, 0.55)),
+    repeating-linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.55),
+      rgba(255, 255, 255, 0.55) 12px,
+      rgba(255, 210, 183, 0.2) 12px,
+      rgba(255, 210, 183, 0.2) 24px
+    );
+}
+
+button {
+  border: 0;
+  border-radius: 14px;
+  color: #fff;
+  font-family: inherit;
+  font-size: clamp(1.05rem, 2.8vw, 1.25rem);
+  padding: 0.7rem 1rem;
+  cursor: pointer;
+}
+
+.music {
+  background: #5b8e7d;
+  font-size: 0.92rem;
+  padding: 0.5rem 0.8rem;
+  border-radius: 12px;
+}
+
+.yes {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  background: var(--yes);
+  box-shadow: 0 10px 16px rgba(244, 91, 105, 0.33);
+  transition: transform 180ms ease, background 180ms ease;
+}
+
+.yes:hover,
+.yes:focus-visible {
+  background: var(--yes-hover);
+  transform: translateY(-2px) scale(1.03);
+}
+
+.no {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: var(--no);
+  box-shadow: 0 10px 16px rgba(46, 111, 149, 0.34);
+  transition: transform 70ms linear;
+  touch-action: none;
+  will-change: transform;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(61, 28, 22, 0.55);
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  animation: fadeIn 200ms ease;
+}
+
+.popup {
+  width: min(430px, 100%);
+  background: #fffefa;
+  border-radius: 22px;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 20px 42px rgba(0, 0, 0, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+.popup h2 {
+  margin: 0;
+  font-size: clamp(1.4rem, 5vw, 1.9rem);
+}
+
+.popup p {
+  margin: 0.5rem 0 0;
+  font-size: clamp(1rem, 3.5vw, 1.2rem);
+}
+
+.popup img {
+  margin-top: 0.7rem;
+  width: 100%;
+  border-radius: 14px;
+}
+
+.close {
+  margin-top: 0.8rem;
+  width: 100%;
+  background: #ff8a5c;
+}
+
+.confetti-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.confetti {
+  position: absolute;
+  top: -12px;
+  width: 10px;
+  height: 15px;
+  border-radius: 2px;
+  opacity: 0.9;
+  animation-name: confettiDrop;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+@keyframes floatIn {
+  from {
+    transform: translateY(18px) scale(0.98);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes confettiDrop {
+  0% {
+    transform: translateY(-8px) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(410px) rotate(360deg);
+    opacity: 0.1;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    border-radius: 22px;
+    padding: 0.95rem;
+  }
+
+  .button-stage {
+    margin-top: 1rem;
+    height: 46dvh;
+    min-height: 280px;
+  }
+
+  .yes,
+  .no {
+    font-size: 1.02rem;
+    padding: 0.65rem 0.9rem;
+  }
+
+  .music {
+    font-size: 0.84rem;
+  }
+}

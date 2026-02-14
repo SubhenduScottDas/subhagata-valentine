@@ -1,0 +1,27 @@
+# dependencies
+node_modules/
+
+# next.js build output
+.next/
+out/
+
+# local env files
+.env
+.env*.local
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# macOS
+.DS_Store
+
+# vercel local project metadata
+.vercel/
+
+# temporary local backups/cache artifacts
+.next_cache_*/
+.next_pre_*/
+.next_*/
