@@ -22,7 +22,7 @@ export default function Home() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [accepted, setAccepted] = useState(false);
   const [selectedMessage, setSelectedMessage] = useState(MESSAGES[0]);
-  const [musicOn, setMusicOn] = useState(false);
+  const [musicOn, setMusicOn] = useState(true);
   const [showPhoto, setShowPhoto] = useState(true);
   const [confettiBurst, setConfettiBurst] = useState(0);
 
@@ -232,9 +232,25 @@ export default function Home() {
     photoProbe.onerror = () => setShowPhoto(false);
   }, []);
 
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    const playOnLoad = async () => {
+      try {
+        await audio.play();
+        setMusicOn(true);
+      } catch {
+        setMusicOn(false);
+      }
+    };
+
+    void playOnLoad();
+  }, []);
+
   return (
     <main className="page">
-      <audio ref={audioRef} loop preload="none" src="/love-song.mp3" />
+      <audio ref={audioRef} loop preload="auto" autoPlay playsInline src="/love-song.mp3" />
 
       <section className="card">
         <div className="top-actions">
